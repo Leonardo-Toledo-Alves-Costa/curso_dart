@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(181, 21, 0, 255)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 10, 100)),
       ),
       home: const MyHomePage(title: 'Contador Asimoviano'),
     );
@@ -91,61 +91,57 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-  body: Stack(
+body: Stack(
   children: [
-    
     Positioned(
-  top: 190, 
-  left: 0,
-  right: 0,
-  child: Image.asset(
-    'assets/logoAsimov.png',
-    height: 400, 
-    fit: BoxFit.contain,
+      top: 190,
+      left: 0,
+      right: 0,
+      child: Image.asset(
+        'assets/logoAsimov.png',
+        height: 400,
+        fit: BoxFit.contain,
+      ),
+    ),
+
+    Positioned.fill(
+      child: Container(
+        color: Colors.black.withOpacity(0.5),
+      ),
+    ),
+
+Center(
+  child: Column(
+    children: <Widget>[
+      const Spacer(), 
+      const Text(
+        'Quantidade de vezes que você apertou o botão:',
+        style: TextStyle(color: Colors.white),
+      ),
+      Text(
+        '$_counter',
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium
+            ?.copyWith(color: Colors.white),
+      ),
+      const Spacer(), 
+      Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: ElevatedButton(
+          onPressed: _resetCounter,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+          ),
+          child: const Text('Resetar'),
+        ),
+      ),
+    ],
   ),
 ),
-
-  
-    
-    Container(
-      color: Colors.black.withOpacity(0.5), 
-    ),
-
-    
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'Quantidade de vezes que você apertou o botão:',
-            style: TextStyle(color: Colors.white),
-          ),
-          Text(
-            '$_counter',
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Colors.white),
-          ),
-          const SizedBox(height: 20), 
-    const Spacer(),
-    Padding(
-      padding: const EdgeInsets.only(bottom: 160), 
-      child: ElevatedButton(
-        onPressed: _resetCounter,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-        ),
-        child: const Text('Resetar'),
-      ),
-),
-        ],
-      ),
-    ),
   ],
 ),
-
-
+  
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
