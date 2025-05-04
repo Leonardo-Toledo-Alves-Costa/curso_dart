@@ -67,6 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _resetCounter() {
+  setState(() {
+    _counter = 0;
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -87,20 +93,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
   body: Stack(
   children: [
-    // Imagem de fundo
-    SizedBox.expand(
-      child: Image.asset(
-        'assets/logoAsimov.png', 
-        fit: BoxFit.cover,
-      ),
-    ),
+    
+    Positioned(
+  top: 190, 
+  left: 0,
+  right: 0,
+  child: Image.asset(
+    'assets/logoAsimov.png',
+    height: 400, 
+    fit: BoxFit.contain,
+  ),
+),
+
   
-    // Filtro de cor para escurecer a imagem
+    
     Container(
-      color: Colors.black.withOpacity(0.5), // escurece o fundo
+      color: Colors.black.withOpacity(0.5), 
     ),
 
-    // Conteúdo por cima da imagem
+    
     Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -116,11 +127,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 .headlineMedium
                 ?.copyWith(color: Colors.white),
           ),
+          const SizedBox(height: 20), 
+    const Spacer(),
+    Padding(
+      padding: const EdgeInsets.only(bottom: 160), 
+      child: ElevatedButton(
+        onPressed: _resetCounter,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+        ),
+        child: const Text('Resetar'),
+      ),
+),
         ],
       ),
     ),
   ],
 ),
+
 
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
